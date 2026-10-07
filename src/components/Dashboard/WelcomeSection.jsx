@@ -1,5 +1,5 @@
-import { CalendarDays } from 'lucide-react';
-import { useStudy } from '../../context/StudyContext';
+import { CalendarDays } from "lucide-react";
+import { useStudy } from "../../context/StudyContext";
 
 function WelcomeSection() {
   const { studentData } = useStudy();
@@ -9,9 +9,7 @@ function WelcomeSection() {
       <div>
         <p className="welcome-label">Student Dashboard</p>
 
-        <h1>
-          Good morning, {studentData.name} 👋
-        </h1>
+        <h1>Hello, {studentData.name}</h1>
 
         <p className="welcome-text">
           Here’s what’s happening with your studies today.
@@ -20,7 +18,13 @@ function WelcomeSection() {
 
       <div className="dashboard-date">
         <CalendarDays size={18} />
-        <span>September 29, 2026</span>
+        <span>
+          {new Date().toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          })}
+        </span>
       </div>
     </section>
   );

@@ -2,7 +2,7 @@ import { TrendingUp } from 'lucide-react';
 import { useStudy } from '../../context/StudyContext';
 
 function StudyProgress() {
-  const { progressData } = useStudy();
+  const { studyProgress } = useStudy();
 
   return (
     <section className="dashboard-card">
@@ -18,10 +18,21 @@ function StudyProgress() {
       </div>
 
       <div className="progress-main">
-        <div className="progress-circle">
+        <div
+          className="progress-circle"
+          style={{
+            background: `conic-gradient(
+              #2563eb 0% ${studyProgress.averageProgress}%,
+              #e2e8f0 ${studyProgress.averageProgress}% 100%
+            )`,
+          }}
+        >
           <div className="progress-circle-inner">
-            <strong>{progressData.completedTasks}%</strong>
-            <span>Completed</span>
+            <strong>
+              {studyProgress.averageProgress}%
+            </strong>
+
+            <span>Overall</span>
           </div>
         </div>
 
@@ -30,7 +41,10 @@ function StudyProgress() {
             <span className="progress-dot blue"></span>
 
             <div>
-              <strong>{progressData.studyHours} hrs</strong>
+              <strong>
+                {studyProgress.studyHours} hrs
+              </strong>
+
               <span>Study hours</span>
             </div>
           </div>
@@ -40,7 +54,7 @@ function StudyProgress() {
 
             <div>
               <strong>
-                {progressData.completedSubjects}
+                {studyProgress.completedSubjects}
               </strong>
 
               <span>Completed subjects</span>
@@ -52,7 +66,7 @@ function StudyProgress() {
 
             <div>
               <strong>
-                {progressData.totalSubjects}
+                {studyProgress.totalSubjects}
               </strong>
 
               <span>Total subjects</span>
